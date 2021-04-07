@@ -15,26 +15,24 @@ import java.util.Date;
 
 <span class="fc" id="L16">        long inHour = ticket.getInTime().getTime() / 1000; //result in seconds</span>
 <span class="fc" id="L17">        long outHour = ticket.getOutTime().getTime() / 1000; //result in seconds</span>
+<span class="fc" id="L18">        double duration = ((double)outHour - (double)inHour) / 3600; //results in hours</span>
 
-        //TODO: Some tests are failing here. Need to check if this logic is correct
-<span class="fc" id="L20">        double duration = ((double)outHour - (double)inHour) / 3600; //results in hours</span>
-
-<span class="fc bfc" id="L22" title="All 2 branches covered.">        if (duration &lt;= 0.5) duration = 0; // 1/2 hour parking time should be free</span>
+<span class="fc bfc" id="L20" title="All 2 branches covered.">        if (duration &lt;= 0.5) duration = 0; // 1/2 hour parking time should be free</span>
 
         //System.out.println(&quot;inHour :&quot;+inHour+&quot;, outHour :&quot;+outHour);
         //System.out.println(duration);
 
-<span class="pc bpc" id="L27" title="1 of 3 branches missed.">        switch (ticket.getParkingSpot().getParkingType()){</span>
+<span class="pc bpc" id="L25" title="1 of 3 branches missed.">        switch (ticket.getParkingSpot().getParkingType()){</span>
             case CAR: {
-<span class="fc" id="L29">                ticket.setPrice(duration * Fare.CAR_RATE_PER_HOUR);</span>
-<span class="fc" id="L30">                break;</span>
+<span class="fc" id="L27">                ticket.setPrice(duration * Fare.CAR_RATE_PER_HOUR);</span>
+<span class="fc" id="L28">                break;</span>
             }
             case BIKE: {
-<span class="fc" id="L33">                ticket.setPrice(duration * Fare.BIKE_RATE_PER_HOUR);</span>
-<span class="fc" id="L34">                break;</span>
+<span class="fc" id="L31">                ticket.setPrice(duration * Fare.BIKE_RATE_PER_HOUR);</span>
+<span class="fc" id="L32">                break;</span>
             }
-<span class="nc" id="L36">            default: throw new IllegalArgumentException(&quot;Unknown Parking Type&quot;);</span>
+<span class="nc" id="L34">            default: throw new IllegalArgumentException(&quot;Unknown Parking Type&quot;);</span>
         }
-<span class="fc" id="L38">    }</span>
+<span class="fc" id="L36">    }</span>
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>
