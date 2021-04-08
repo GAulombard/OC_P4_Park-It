@@ -101,11 +101,4 @@ public class ParkingServiceTest {
         verify(parkingSpotDAO, Mockito.times(1)).updateParking(any(ParkingSpot.class));
     }
 
-    /*
-    @Test
-    public void getNextParkingNumberIfAvailable() {
-        parkingService.getNextParkingNumberIfAvailable();
-    }*/
-
-
 }
