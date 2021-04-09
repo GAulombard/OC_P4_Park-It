@@ -19,8 +19,6 @@ public class FareCalculatorService {
 
         if (duration <= 0.5) duration = 0; // 1/2 hour parking time should be free
 
-        //System.out.println("inHour :"+inHour+", outHour :"+outHour);
-        //System.out.println(duration);
 
         switch (ticket.getParkingSpot().getParkingType()){
             case CAR: {

@@ -33,19 +33,26 @@ public class InteractiveShellTest {
     @BeforeEach
     public void init() {
         interactiveShell = new InteractiveShell();
+
+        /*
         inputReaderUtil = new InputReaderUtil();
         parkingSpotDAO = new ParkingSpotDAO();
         ticketDAO = new TicketDAO();
         parkingService = new ParkingService(inputReaderUtil,parkingSpotDAO,ticketDAO);
+        */
     }
 
-    /*
+/*
     @Test
     public void loadInterfaceTest() {
+        //GIVEN
+        //when(inputReaderUtil.readSelection()).thenReturn(1);
 
+        //WHEN
         interactiveShell.loadInterface();
-        when(inputReaderUtil.readSelection()).thenReturn(1);
-        verify(parkingService).processIncomingVehicle();
-    }*/
 
+        //THEN
+        //verify(interactiveShell).loadMenu();
+    }
+*/
 }

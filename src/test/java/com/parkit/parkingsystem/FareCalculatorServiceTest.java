@@ -166,8 +166,4 @@ public class FareCalculatorServiceTest {
         assertEquals( (0 * Fare.CAR_RATE_PER_HOUR) , ticket.getPrice());
     }
 
-    @Test
-    public void throwExceptionForUnknownParkingType() {
-        //TODO: exception for unknown parking type
-    }
 }
