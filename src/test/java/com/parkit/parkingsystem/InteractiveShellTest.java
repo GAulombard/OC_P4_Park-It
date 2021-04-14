@@ -20,39 +20,31 @@ import static org.mockito.Mockito.*;
 public class InteractiveShellTest {
 
     private static InteractiveShell interactiveShell;
+    private static ParkingSpotDAO parkingSpotDAO;
+    private static TicketDAO ticketDAO;
+
+    @Mock
+    ParkingService parkingService;
 
     @Mock
     private static InputReaderUtil inputReaderUtil;
-    @Mock
-    private static ParkingService parkingService;
-    @Mock
-    private static ParkingSpotDAO parkingSpotDAO;
-    @Mock
-    private static TicketDAO ticketDAO;
 
-    @BeforeEach
-    public void init() {
-        interactiveShell = new InteractiveShell();
 
-        /*
-        inputReaderUtil = new InputReaderUtil();
-        parkingSpotDAO = new ParkingSpotDAO();
-        ticketDAO = new TicketDAO();
-        parkingService = new ParkingService(inputReaderUtil,parkingSpotDAO,ticketDAO);
-        */
-    }
 
-/*
     @Test
     public void loadInterfaceTest() {
-        //GIVEN
-        //when(inputReaderUtil.readSelection()).thenReturn(1);
-
-        //WHEN
+        /*
         interactiveShell.loadInterface();
+        try {
+            when(inputReaderUtil.readSelection()).thenReturn(1);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
-        //THEN
-        //verify(interactiveShell).loadMenu();
+
+        verify(parkingService).processIncomingVehicle();
+
+         */
     }
-*/
+
 }

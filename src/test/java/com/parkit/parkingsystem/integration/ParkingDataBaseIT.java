@@ -54,13 +54,12 @@ public class ParkingDataBaseIT {
     }
 
     @Test
-    public void testParkingACar(){
+    public void testParkingACar(){ // check that a ticket is actualy saved in DB and Parking table is updated with availability
         ParkingService parkingService = new ParkingService(inputReaderUtil, parkingSpotDAO, ticketDAO);
         parkingService.processIncomingVehicle();
         ParkingSpot parkingSpot = parkingService.getNextParkingNumberIfAvailable();
+
         assertTrue(parkingSpot.isAvailable());
-        // check that a ticket is actualy saved in DB and Parking table is updated with availability
-        //unitaire -> assert
         Ticket ticket = ticketDAO.getTicket("ABCDEF");
 
         assertEquals(ticket.getPrice(), 0);
@@ -68,19 +67,20 @@ public class ParkingDataBaseIT {
     }
 
     @Test
-    public void testParkingLotExit(){
+    public void testParkingLotExit(){ //check that the fare generated and out time are populated correctly in the database
         testParkingACar();
         ParkingService parkingService = new ParkingService(inputReaderUtil, parkingSpotDAO, ticketDAO);
         Date outTimeCompare = new Date();
         parkingService.processExitingVehicle();
         ParkingSpot parkingSpot = parkingService.getNextParkingNumberIfAvailable();
+
         assertTrue(parkingSpot.isAvailable());
         Ticket ticket = ticketDAO.getTicket("ABCDEF");
+
         assertEquals(ticket.getOutTime().getDay(),outTimeCompare.getDay());
         assertEquals(ticket.getOutTime().getHours(),outTimeCompare.getHours());
         //assertEquals(ticket.getOutTime().getMinutes(),outTimeCompare.getMinutes());
-        //check that the fare generated and out time are populated correctly in the database
-        //unitaire -> assert
+
     }
 
 }

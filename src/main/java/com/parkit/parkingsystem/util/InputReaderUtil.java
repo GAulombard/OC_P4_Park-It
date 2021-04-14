@@ -7,9 +7,13 @@ import java.util.Scanner;
 
 public class InputReaderUtil {
 
-    private static Scanner scan = new Scanner(System.in);
+    private Scanner scan = new Scanner(System.in);
     private static final Logger logger = LogManager.getLogger("InputReaderUtil");
 
+
+    public InputReaderUtil() {
+
+    }
     public int readSelection() {
         try {
             int input = Integer.parseInt(scan.nextLine());

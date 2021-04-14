@@ -16,6 +16,7 @@ import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.util.Date;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
@@ -146,5 +147,19 @@ public class ParkingServiceTest {
 
         parkingService.processIncomingVehicle();
         verify(parkingSpotDAO, Mockito.times(1)).updateParking(any(ParkingSpot.class));
+    }
+
+    @Test
+    public void ParkingSpotTest() {
+        ParkingSpot classUnderTest = new ParkingSpot(0,null,true);
+
+        classUnderTest.setId(100);
+        classUnderTest.setParkingType(ParkingType.CAR);
+        classUnderTest.setAvailable(false);
+
+        assertEquals(100,classUnderTest.getId());
+        assertEquals(ParkingType.CAR,classUnderTest.getParkingType());
+        assertEquals(false,classUnderTest.isAvailable());
+
     }
 }
