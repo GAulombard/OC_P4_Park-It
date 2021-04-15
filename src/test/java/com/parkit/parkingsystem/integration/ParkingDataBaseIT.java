@@ -54,7 +54,7 @@ public class ParkingDataBaseIT {
     }
 
     @Test
-    public void testParkingACar(){ // check that a ticket is actualy saved in DB and Parking table is updated with availability
+    public void testParkingACar(){ // check that a ticket is actually saved in DB and Parking table is updated with availability
         ParkingService parkingService = new ParkingService(inputReaderUtil, parkingSpotDAO, ticketDAO);
         parkingService.processIncomingVehicle();
         ParkingSpot parkingSpot = parkingService.getNextParkingNumberIfAvailable();

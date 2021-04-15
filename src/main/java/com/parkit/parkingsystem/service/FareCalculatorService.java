@@ -17,7 +17,7 @@ public class FareCalculatorService {
         long outHour = ticket.getOutTime().getTime() / 1000; //result in seconds
         double duration = ((double)outHour - (double)inHour) / 3600; //results in hours
 
-        if (duration <= 0.5) duration = 0; // 1/2 hour parking time should be free
+        if (duration <= 0.5) duration = 0; // <= 1/2hour parking time should be free
 
 
         switch (ticket.getParkingSpot().getParkingType()){
