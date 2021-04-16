@@ -29,7 +29,7 @@ public class InteractiveShellTest {
 
     private static Logger logger = LogManager.getLogger(InteractiveShell.class);
 
-
+/*
     @Test
     public void loadInterfaceTest_whenProcessIncomingVehicle() {
 
@@ -50,7 +50,7 @@ public class InteractiveShellTest {
 
     }
 
-
+*/
 
     /*
     @Test

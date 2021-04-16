@@ -17,7 +17,7 @@ import java.util.Date;
 <span class="fc" id="L17">        long outHour = ticket.getOutTime().getTime() / 1000; //result in seconds</span>
 <span class="fc" id="L18">        double duration = ((double)outHour - (double)inHour) / 3600; //results in hours</span>
 
-<span class="fc bfc" id="L20" title="All 2 branches covered.">        if (duration &lt;= 0.5) duration = 0; // 1/2 hour parking time should be free</span>
+<span class="fc bfc" id="L20" title="All 2 branches covered.">        if (duration &lt;= 0.5) duration = 0; // &lt;= 1/2hour parking time should be free</span>
 
 
 <span class="pc bpc" id="L23" title="1 of 3 branches missed.">        switch (ticket.getParkingSpot().getParkingType()){</span>
