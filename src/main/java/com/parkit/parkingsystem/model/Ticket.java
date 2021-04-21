@@ -44,18 +44,20 @@ public class Ticket {
     }
 
     public Date getInTime() {
+        final Date inTime = this.inTime;
         return inTime;
     }
 
     public void setInTime(Date inTime) {
-        this.inTime = inTime;
+        this.inTime = inTime == null ? null : (Date)inTime.clone();
     }
 
     public Date getOutTime() {
+        final Date outTime = this.outTime;
         return outTime;
     }
 
     public void setOutTime(Date outTime) {
-        this.outTime = outTime;
+        this.outTime = outTime == null ? null : (Date)outTime.clone();
     }
 }

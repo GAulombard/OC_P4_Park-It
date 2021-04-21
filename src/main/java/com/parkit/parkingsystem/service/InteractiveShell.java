@@ -36,6 +36,7 @@ public class InteractiveShell {
                 }
                 case 3: {
                     logger.info("Exiting from the system!");
+                    continueApp = false;
                     break;
                 }
                 default: logger.info("Unsupported option. Please enter a number corresponding to the provided menu");
