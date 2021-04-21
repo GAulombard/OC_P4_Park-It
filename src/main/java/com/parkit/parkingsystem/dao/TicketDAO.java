@@ -87,4 +87,24 @@ public class TicketDAO {
         }
         return false;
     }
+
+    public boolean checkIfRegVehicleNumberAlreadyExist(String vehicleRegNumber) {
+        Connection con = null;
+        boolean alreadyExist = false;
+        try {
+
+            con = dataBaseConfig.getConnection();
+            PreparedStatement ps = con.prepareStatement(DBConstants.CHECK_VEHICLE_REG_NUMBER);
+            ps.setString(1, vehicleRegNumber);
+            ResultSet rs = ps.executeQuery();
+            alreadyExist = rs.next();
+
+        } catch (Exception e) {
+            logger.error("Error checking if vehicle registration number already exist", e);
+        } finally {
+            dataBaseConfig.closeConnection(con);
+        }
+        return alreadyExist;
+    }
+
 }

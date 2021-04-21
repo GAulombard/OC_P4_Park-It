@@ -20,7 +20,6 @@ public class TicketDAOTest {
 
     private static DataBaseTestConfig dataBaseTestConfig = new DataBaseTestConfig();
     private static TicketDAO ticketDAO;
-    //private static Ticket compareTicket;
     private static DataBasePrepareService dataBasePrepareService;
 
     @BeforeAll
@@ -161,6 +160,39 @@ public class TicketDAOTest {
         fakeTicket.setOutTime(outTime);
 
         assertFalse(ticketDAO.updateTicket(fakeTicket));
+
+    }
+
+    @Test
+    public void checkIfRegVehicleNumberAlreadyExistTest() {
+        Ticket ticket = new Ticket();
+        Date time = new Date();
+
+        ticket.setParkingSpot(new ParkingSpot(1, ParkingType.CAR,true));
+        ticket.setVehicleRegNumber("987");
+        ticket.setInTime(time);
+        ticket.setOutTime(time);
+
+        ticketDAO.saveTicket(ticket);
+
+        assertTrue(ticketDAO.checkIfRegVehicleNumberAlreadyExist("987"));
+
+    }
+
+    @Test
+    public void checkIfRegVehicleNumberAlreadyExistTest_shouldThrowsException_whenConnectionFail() {
+        Ticket ticket = new Ticket();
+        Date time = new Date();
+
+        ticket.setParkingSpot(new ParkingSpot(1, ParkingType.CAR,true));
+        ticket.setVehicleRegNumber("987");
+        ticket.setInTime(time);
+        ticket.setOutTime(time);
+
+        ticketDAO.saveTicket(ticket);
+
+        ticketDAO.dataBaseConfig = null;
+        assertThrows(Exception.class, () ->ticketDAO.checkIfRegVehicleNumberAlreadyExist("987"));
 
     }
 
