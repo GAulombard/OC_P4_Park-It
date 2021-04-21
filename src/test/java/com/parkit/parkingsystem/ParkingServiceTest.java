@@ -17,6 +17,7 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import java.util.Date;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
@@ -125,6 +126,7 @@ public class ParkingServiceTest {
         parkingService.processIncomingVehicle();
         verify(parkingSpotDAO, Mockito.times(1)).updateParking(any(ParkingSpot.class));
     }
+
     @Test
     public void processIncomingBikeTest() {
 
@@ -148,7 +150,38 @@ public class ParkingServiceTest {
         parkingService.processIncomingVehicle();
         verify(parkingSpotDAO, Mockito.times(1)).updateParking(any(ParkingSpot.class));
     }
+/*
+    @Test
+    public void processIncomingCarTest_shouldThrowsException() {
 
+        assertThrows(Exception.class, () -> parkingService.processIncomingVehicle());
+    }
+
+ */
+/*
+    @Test
+    public void processIncomingTest_shouldThrowsIllegalArgumentException_whenInputInvalid() {
+
+        try {
+            when(inputReaderUtil.readVehicleRegistrationNumber()).thenReturn("ABCDEF");
+
+            ParkingSpot parkingSpot = new ParkingSpot(1, ParkingType.BIKE, false);
+            Ticket ticket = new Ticket();
+            ticket.setInTime(new Date(System.currentTimeMillis() - (60 * 60 * 1000)));
+            ticket.setParkingSpot(parkingSpot);
+            ticket.setVehicleRegNumber("ABCDEF");
+            when(parkingSpotDAO.updateParking(any(ParkingSpot.class))).thenReturn(true);
+
+            parkingService = new ParkingService(inputReaderUtil, parkingSpotDAO, ticketDAO);
+            when(inputReaderUtil.readSelection()).thenReturn(3);
+            when(parkingSpotDAO.getNextAvailableSlot(any(ParkingType.class))).thenReturn(1);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        assertThrows(IllegalArgumentException.class, () -> parkingService.processIncomingVehicle());
+    }
+*/
     @Test
     public void ParkingSpotTest() {
         ParkingSpot classUnderTest = new ParkingSpot(0,null,true);

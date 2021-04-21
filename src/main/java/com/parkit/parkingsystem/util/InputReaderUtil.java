@@ -15,8 +15,9 @@ public class InputReaderUtil {
 
     }
     public int readSelection() {
+        int input;
         try {
-            int input = Integer.parseInt(scan.nextLine());
+            input = Integer.parseInt(scan.nextLine());
             return input;
         }catch(Exception e){
             logger.error("Error while reading user input from Shell", e);

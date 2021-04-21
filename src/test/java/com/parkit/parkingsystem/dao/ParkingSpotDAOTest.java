@@ -9,8 +9,7 @@ import org.junit.jupiter.api.*;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.junit.jupiter.MockitoExtension;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
@@ -24,18 +23,25 @@ public class ParkingSpotDAOTest {
     @BeforeAll
     private static void setUp(){
         parkingSpotDAO = new ParkingSpotDAO();
-        parkingSpotDAO.dataBaseConfig = dataBaseTestConfig;
         dataBasePrepareService = new DataBasePrepareService();
     }
 
     @BeforeEach
     private void setUpPerTest(){
+        parkingSpotDAO.dataBaseConfig = dataBaseTestConfig;
         dataBasePrepareService.clearDataBaseEntries();
     }
 
     @Test
     public void getNextAvailableSlotForCar() {
         assertEquals(1,parkingSpotDAO.getNextAvailableSlot(ParkingType.CAR));
+    }
+
+    @Test
+    public void getNextAvailable_shouldThrowExceptions_whenNoDBConnectionAvailable() {
+
+        parkingSpotDAO.dataBaseConfig = null;
+        assertThrows(Exception.class,() -> parkingSpotDAO.getNextAvailableSlot(ParkingType.CAR));
     }
 
     @Test
@@ -49,4 +55,12 @@ public class ParkingSpotDAOTest {
 
         assertTrue(parkingSpotDAO.updateParking(parkingSpot));
     }
+    @Test
+    public void updateParkingTest_ShouldThrowsExceptions_WhenNoDBConnectionAvailable() {
+        parkingSpot = new ParkingSpot(1, ParkingType.CAR,true);
+
+        parkingSpotDAO.dataBaseConfig = null;
+        assertThrows(Exception.class,() -> parkingSpotDAO.updateParking(parkingSpot));
+    }
+
 }

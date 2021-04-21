@@ -9,6 +9,8 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.sql.Connection;
+import java.sql.SQLException;
 import java.time.LocalDateTime;
 import java.util.Date;
 
@@ -24,18 +26,18 @@ public class TicketDAOTest {
     @BeforeAll
     static void setUp(){
         ticketDAO = new TicketDAO();
-        ticketDAO.dataBaseConfig = dataBaseTestConfig;
         dataBasePrepareService = new DataBasePrepareService();
 
     }
 
     @BeforeEach
     void setUpPerTest(){
+        ticketDAO.dataBaseConfig = dataBaseTestConfig;
         dataBasePrepareService.clearDataBaseEntries();
     }
 
     @Test
-    public void saveTicketTest(){
+    public void saveTicketTest() {
         Ticket ticket = new Ticket();
         Date inTime = new Date();
 
@@ -47,7 +49,20 @@ public class TicketDAOTest {
     }
 
     @Test
-    public void saveTicketTest_WhenFail(){
+    public void saveTicketTest_shouldThrowException_whenNoDBConnectionAvailable() {
+        Ticket ticket = new Ticket();
+        Date inTime = new Date();
+        ticketDAO.dataBaseConfig = null;
+
+        ticket.setParkingSpot(new ParkingSpot(1, ParkingType.CAR,true));
+        ticket.setVehicleRegNumber("404-AB");
+        ticket.setInTime(inTime);
+        assertThrows(Exception.class, () -> ticketDAO.saveTicket(ticket));
+
+    }
+
+    @Test
+    public void saveTicketTest_WhenFail() {
         Ticket ticket = new Ticket();
         Date inTime = new Date();
 
@@ -62,20 +77,29 @@ public class TicketDAOTest {
     @Test
     public void getTicketTest(){
         String vehicleRegNumber = "400-BC";
-
         Ticket compareTicket = new Ticket();
         Date inTime = new Date();
+
 
         compareTicket.setParkingSpot(new ParkingSpot(3, ParkingType.CAR,false));
         compareTicket.setVehicleRegNumber("400-BC");
         compareTicket.setInTime(inTime);
         ticketDAO.saveTicket(compareTicket);
 
-        //assertEquals(compareTicket.getId(), ticketDAO.getTicket(vehicleRegNumber).getId());
         assertEquals(compareTicket.getParkingSpot(), ticketDAO.getTicket(vehicleRegNumber).getParkingSpot());
         assertEquals(compareTicket.getVehicleRegNumber(), ticketDAO.getTicket(vehicleRegNumber).getVehicleRegNumber());
         assertEquals(compareTicket.getPrice(), ticketDAO.getTicket(vehicleRegNumber).getPrice());
-        //assertEquals(compareTicket.getInTime().getTime(), ticketDAO.getTicket(vehicleRegNumber).getInTime().getTime());
+
+
+    }
+
+    @Test
+    public void getTicketTest_shouldThrowsException_WhenNoDBConnectionAvailable(){
+        String vehicleRegNumber = "400-BC";
+        ticketDAO.dataBaseConfig = null;
+
+        assertThrows(Exception.class,()->ticketDAO.getTicket(vehicleRegNumber));
+
 
     }
 
@@ -98,21 +122,40 @@ public class TicketDAOTest {
         compareTicket.setVehicleRegNumber("400-BC");
         compareTicket.setInTime(inTime);
         ticketDAO.saveTicket(compareTicket);
+        Ticket ticketUpdated = ticketDAO.getTicket(vehicleRegNumber);
 
-        compareTicket.setPrice(2.0);
-        compareTicket.setOutTime(inTime);
+        ticketUpdated.setPrice(4.0);
+        ticketUpdated.setOutTime(inTime);
 
-        assertTrue(ticketDAO.updateTicket(compareTicket));
+        assertTrue(ticketDAO.updateTicket(ticketUpdated));
 
     }
-/*
+
+    @Test
+    public void updateTicketTest_shouldThrowsException_WhenNoDBConnectionAvailable(){
+        String vehicleRegNumber = "400-BC";
+        Ticket compareTicket = new Ticket();
+        Date inTime = new Date();
+
+        compareTicket.setParkingSpot(new ParkingSpot(3, ParkingType.CAR,false));
+        compareTicket.setVehicleRegNumber("400-BC");
+        compareTicket.setInTime(inTime);
+        ticketDAO.saveTicket(compareTicket);
+        Ticket ticketUpdated = ticketDAO.getTicket(vehicleRegNumber);
+
+        ticketUpdated.setPrice(4.0);
+        ticketUpdated.setOutTime(inTime);
+
+        ticketDAO.dataBaseConfig = null;
+        assertThrows(Exception.class, ()->ticketDAO.updateTicket(ticketUpdated));
+
+    }
+
     @Test
     public void updateTicketTest_whenFail(){
-        String vehicleRegNumber = "400-BC";
 
         Ticket fakeTicket = new Ticket();
         Date outTime = new Date();
-        //ticketDAO.saveTicket(fakeTicket);
 
         fakeTicket.setId(300);
         fakeTicket.setOutTime(outTime);
@@ -120,5 +163,5 @@ public class TicketDAOTest {
         assertFalse(ticketDAO.updateTicket(fakeTicket));
 
     }
-*/
+
 }

@@ -16,6 +16,10 @@ import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 
+import java.io.ByteArrayInputStream;
+import java.io.InputStream;
+import java.util.Scanner;
+
 import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
@@ -27,14 +31,11 @@ public class InteractiveShellTest {
     @Mock
     private static InputReaderUtil inputReaderUtil;
 
-    private static Logger logger = LogManager.getLogger(InteractiveShell.class);
-
 /*
     @Test
     public void loadInterfaceTest_whenProcessIncomingVehicle() {
 
         when(inputReaderUtil.readSelection()).thenReturn(1);
-        doNothing().when(parkingService).processIncomingVehicle();
         InteractiveShell.loadInterface();
         verify(parkingService, Mockito.times(1)).processIncomingVehicle();
 
@@ -44,13 +45,12 @@ public class InteractiveShellTest {
     public void loadInterfaceTest_whenProcessExitingVehicle() {
 
         when(inputReaderUtil.readSelection()).thenReturn(2);
-        doNothing().when(parkingService).processExitingVehicle();
         InteractiveShell.loadInterface();
         verify(parkingService, Mockito.times(1)).processExitingVehicle();
 
     }
 
-*/
+
 
     /*
     @Test
@@ -61,4 +61,5 @@ public class InteractiveShellTest {
 
     }
     */
+
 }
