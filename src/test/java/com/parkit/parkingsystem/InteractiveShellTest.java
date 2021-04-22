@@ -1,24 +1,14 @@
 package com.parkit.parkingsystem;
 
-import com.parkit.parkingsystem.dao.ParkingSpotDAO;
-import com.parkit.parkingsystem.dao.TicketDAO;
 import com.parkit.parkingsystem.service.InteractiveShell;
 import com.parkit.parkingsystem.service.ParkingService;
 import com.parkit.parkingsystem.util.InputReaderUtil;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
-import org.junit.Assert;
-import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 
-import java.io.ByteArrayInputStream;
-import java.io.InputStream;
-import java.util.Scanner;
 
 import static org.mockito.Mockito.*;
 
@@ -30,8 +20,6 @@ public class InteractiveShellTest {
 
     @Mock
     private static InputReaderUtil inputReaderUtil;
-
-    //TODO : InteractiveShell Test to do
 
 /*
     @Test
@@ -51,17 +39,5 @@ public class InteractiveShellTest {
         verify(parkingService, Mockito.times(1)).processExitingVehicle();
 
     }
-
-
-
-    /*
-    @Test
-    public void loadInterfaceTest_whenExitingInterface() {
-
-        when(inputReaderUtil.readSelection()).thenReturn(3);
-        InteractiveShell.loadInterface();
-
-    }
-    */
-
+*/
 }
