@@ -67,9 +67,9 @@ import java.sql.Timestamp;
 <span class="fc" id="L67">        } catch (Exception ex) {</span>
 <span class="fc" id="L68">            logger.error(&quot;Error fetching next available slot&quot;, ex);</span>
         } finally {
-<span class="pc" id="L70">            dataBaseConfig.closeConnection(con);</span>
-<span class="pc" id="L71">            return ticket;</span>
+<span class="fc" id="L70">            dataBaseConfig.closeConnection(con);</span>
         }
+<span class="fc" id="L72">        return ticket;</span>
     }
 
     public boolean updateTicket(Ticket ticket) {
