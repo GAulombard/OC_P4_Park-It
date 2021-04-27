@@ -7,15 +7,32 @@ import java.io.*;
 import java.nio.charset.StandardCharsets;
 import java.sql.*;
 
-public class DataBaseConfig {
+/**
+ * DataBaseConfig
+ */
 
+public class DataBaseConfig {
+    /**
+     * @see Logger
+     */
     private static final Logger logger = LogManager.getLogger("DataBaseConfig");
     private String line;
 
+    /**
+     * get Connection
+     * allow to connect to the jdbc DB using url, username and password
+     * @return connexion url of the DB
+     * @throws ClassNotFoundException if class not found
+     * @throws SQLException if SQL exception
+     * @see Connection
+     */
     public Connection getConnection() throws ClassNotFoundException, SQLException {
         logger.info("Create DB connection");
+        /**
+         * @see Class
+         */
         Class.forName("com.mysql.cj.jdbc.Driver");
-        try {
+        try { //try to read a hided file (.gitignore) containing the password
             File file = new File(".idea/jdbcpassword.txt");
             InputStreamReader inputStreamReader = new InputStreamReader(new FileInputStream(file),StandardCharsets.UTF_8);
             BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
@@ -28,10 +45,18 @@ public class DataBaseConfig {
         } catch (IOException e) {
             e.printStackTrace();
         }
+        /**
+         * @see DriverManager
+         */
         return DriverManager.getConnection(
                 "jdbc:mysql://localhost:3306/prod?serverTimezone=UTC","root",line);
     }
 
+    /**
+     * close connection
+     * close the DB connection
+     * @param con connection
+     */
     public void closeConnection(Connection con){
         if(con!=null){
             try {
@@ -43,6 +68,10 @@ public class DataBaseConfig {
         }
     }
 
+    /**
+     * close prepared statement
+     * @param ps prepared statement
+     */
     public void closePreparedStatement(PreparedStatement ps) {
         if(ps!=null){
             try {
@@ -54,6 +83,10 @@ public class DataBaseConfig {
         }
     }
 
+    /**
+     * close ResultSet
+     * @param rs result set
+     */
     public void closeResultSet(ResultSet rs) {
         if(rs!=null){
             try {

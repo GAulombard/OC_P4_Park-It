@@ -13,12 +13,26 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Timestamp;
 
+/**
+ * Ticket DAO
+ * Data Access Object for ticket management in DB.
+ */
 public class TicketDAO {
-
+    /**
+     * @see Logger
+     */
     private static final Logger logger = LogManager.getLogger("TicketDAO");
-
+    /**
+     * @see DataBaseConfig
+     */
     public DataBaseConfig dataBaseConfig = new DataBaseConfig();
 
+    /**
+     * save Ticket
+     * save ticket in DB with details.
+     * @param ticket ticket details
+     * @return boolean
+     */
     public boolean saveTicket(Ticket ticket) {
         Connection con = null;
         try {
@@ -43,6 +57,12 @@ public class TicketDAO {
         return false;
     }
 
+    /**
+     * get Ticket
+     * get Ticket from DB
+     * @param vehicleRegNumber vehicle registration number
+     * @return ticket
+     */
     public Ticket getTicket(String vehicleRegNumber) {
         Connection con = null;
         Ticket ticket = null;
@@ -72,6 +92,12 @@ public class TicketDAO {
         return ticket;
     }
 
+    /**
+     * update ticket
+     * update ticket in DB
+     * @param ticket ticket
+     * @return boolean
+     */
     public boolean updateTicket(Ticket ticket) {
         Connection con = null;
         if (ticket.getInTime() != null) {
@@ -94,6 +120,11 @@ public class TicketDAO {
         return false;
     }
 
+    /**
+     * check if vehicle registration number already exists in DB
+     * @param vehicleRegNumber vehicle registration number
+     * @return boolean
+     */
     public boolean checkIfRegVehicleNumberAlreadyExist(String vehicleRegNumber) {
         Connection con = null;
         boolean alreadyExist = false;

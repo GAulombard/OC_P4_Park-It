@@ -6,17 +6,38 @@ import com.parkit.parkingsystem.util.InputReaderUtil;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+
+/**
+ * Service for interactive interface
+ */
 public class InteractiveShell {
 
+    /**
+     * @see Logger
+     */
     private static final Logger logger = LogManager.getLogger("InteractiveShell");
 
+    /**
+     * Load the interface
+     */
     public static void loadInterface(){
         logger.info("App initialized!!!");
         logger.info("Welcome to Parking System!");
-
+        /**
+         * @see InputReaderUtil
+         */
         InputReaderUtil inputReaderUtil = new InputReaderUtil();
+        /**
+         * @see ParkingSpotDAO
+         */
         ParkingSpotDAO parkingSpotDAO = new ParkingSpotDAO();
+        /**
+         * @see TicketDAO
+         */
         TicketDAO ticketDAO = new TicketDAO();
+        /**
+         * @see ParkingService
+         */
         ParkingService parkingService = new ParkingService(inputReaderUtil, parkingSpotDAO, ticketDAO);
 
         boolean continueApp = true;
@@ -44,6 +65,9 @@ public class InteractiveShell {
         }
     }
 
+    /**
+     * Load interactive menu with options
+     */
     private static void loadMenu(){
         logger.info("Please select an option. Simply enter the number to choose an action");
         logger.info("1 New Vehicle Entering - Allocate Parking Space");

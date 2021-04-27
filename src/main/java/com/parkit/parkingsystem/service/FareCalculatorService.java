@@ -8,14 +8,28 @@ import org.apache.logging.log4j.Logger;
 
 import java.util.Date;
 
+/**
+ * Service for fare calculation
+ */
 
 public class FareCalculatorService {
-
+    /**
+     * @see TicketDAO
+     */
     private TicketDAO ticketDAO = new TicketDAO();
-
+    /**
+     * @see Logger
+     */
     private static final Logger logger = LogManager.getLogger("FareCalculatorService");
 
+    /**
+     * Fare calculation from user ticket.
+     * If the user is a recurrent user, a 5% discount applied to the fare.
+     * If the user use the parking slot fro less than half hour, the fare is free.
+     * @param ticket ticket from the DB, with all the information needed to calculate the fare
+     */
     public void calculateFare(Ticket ticket) {
+
         if ((ticket.getOutTime() == null) || (ticket.getOutTime().before(ticket.getInTime()))) {
             throw new IllegalArgumentException("Out time provided is incorrect:" + ticket.getOutTime().toString());
         }
@@ -23,7 +37,8 @@ public class FareCalculatorService {
         long inHour = ticket.getInTime().getTime() / 1000; //result in seconds
         long outHour = ticket.getOutTime().getTime() / 1000; //result in seconds
         double duration = ((double) outHour - (double) inHour) / 3600; //results in hours
-        double defaultDiscount = 1.0;
+
+        double defaultDiscount = 1.0; //default rate applied to all fare
         double discount = defaultDiscount;
 
         if (ticketDAO.checkIfRegVehicleNumberAlreadyExist(ticket.getVehicleRegNumber())) {
