@@ -5,38 +5,59 @@ import org.apache.logging.log4j.Logger;
 
 import java.util.Scanner;
 
+/**
+ * Input Reader util
+ * tool for user input reading
+ */
 public class InputReaderUtil {
+    /**
+     * @see Scanner
+     */
+<span class="fc" id="L16">    private Scanner scan = new Scanner(System.in , &quot;UTF-8&quot;);</span>
+    /**
+     * @see Logger
+     */
+<span class="fc" id="L20">    private static final Logger logger = LogManager.getLogger(&quot;InputReaderUtil&quot;);</span>
 
-<span class="fc" id="L10">    private Scanner scan = new Scanner(System.in , &quot;UTF-8&quot;);</span>
-<span class="fc" id="L11">    private static final Logger logger = LogManager.getLogger(&quot;InputReaderUtil&quot;);</span>
 
+<span class="fc" id="L23">    public InputReaderUtil() {</span>
 
-<span class="fc" id="L14">    public InputReaderUtil() {</span>
+<span class="fc" id="L25">    }</span>
 
-<span class="fc" id="L16">    }</span>
+    /**
+     * read Selection
+     * read the user selection
+     * @return user selection or -1 if incorrect input
+     */
     public int readSelection() {
         int input;
         try {
-<span class="fc" id="L20">            input = Integer.parseInt(scan.nextLine());</span>
-<span class="fc" id="L21">            return input;</span>
-<span class="fc" id="L22">        }catch(Exception e){</span>
-<span class="fc" id="L23">            logger.error(&quot;Error while reading user input from Shell&quot;, e);</span>
-<span class="fc" id="L24">            System.out.println(&quot;Error reading input. Please enter valid number for proceeding further&quot;);</span>
-<span class="fc" id="L25">            return -1;</span>
+<span class="fc" id="L35">            input = Integer.parseInt(scan.nextLine());</span>
+<span class="fc" id="L36">            return input;</span>
+<span class="fc" id="L37">        }catch(Exception e){</span>
+<span class="fc" id="L38">            logger.error(&quot;Error while reading user input from Shell&quot;, e);</span>
+<span class="fc" id="L39">            System.out.println(&quot;Error reading input. Please enter valid number for proceeding further&quot;);</span>
+<span class="fc" id="L40">            return -1;</span>
         }
     }
 
+    /**
+     * read Vehicle Registration Number
+     * read the vehicule registration number form the user input
+     * @return vehicle registration number
+     * @throws Exception if incorrect input
+     */
     public String readVehicleRegistrationNumber() throws Exception {
         try {
-<span class="fc" id="L31">            String vehicleRegNumber= scan.nextLine();</span>
-<span class="pc bpc" id="L32" title="1 of 4 branches missed.">            if(vehicleRegNumber == null || vehicleRegNumber.trim().length()==0) {</span>
-<span class="fc" id="L33">                throw new IllegalArgumentException(&quot;Invalid input provided&quot;);</span>
+<span class="fc" id="L52">            String vehicleRegNumber= scan.nextLine();</span>
+<span class="pc bpc" id="L53" title="1 of 4 branches missed.">            if(vehicleRegNumber == null || vehicleRegNumber.trim().length()==0) {</span>
+<span class="fc" id="L54">                throw new IllegalArgumentException(&quot;Invalid input provided&quot;);</span>
             }
-<span class="fc" id="L35">            return vehicleRegNumber;</span>
-<span class="fc" id="L36">        }catch(Exception e){</span>
-<span class="fc" id="L37">            logger.error(&quot;Error while reading user input from Shell&quot;, e);</span>
-<span class="fc" id="L38">            System.out.println(&quot;Error reading input. Please enter a valid string for vehicle registration number&quot;);</span>
-<span class="fc" id="L39">            throw e;</span>
+<span class="fc" id="L56">            return vehicleRegNumber;</span>
+<span class="fc" id="L57">        }catch(Exception e){</span>
+<span class="fc" id="L58">            logger.error(&quot;Error while reading user input from Shell&quot;, e);</span>
+<span class="fc" id="L59">            System.out.println(&quot;Error reading input. Please enter a valid string for vehicle registration number&quot;);</span>
+<span class="fc" id="L60">            throw e;</span>
         }
     }
 

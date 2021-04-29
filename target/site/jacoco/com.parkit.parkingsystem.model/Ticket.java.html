@@ -3,62 +3,133 @@
 import java.util.Calendar;
 import java.util.Date;
 
-<span class="fc" id="L6">public class Ticket {</span>
+/**
+ * Ticket details
+ */
+<span class="fc" id="L9">public class Ticket {</span>
+    /**
+     * ticket ID
+     */
     private int id;
+    /**
+     * @see ParkingSpot
+     */
     private ParkingSpot parkingSpot;
+    /**
+     * vehicle registration number
+     */
     private String vehicleRegNumber;
+    /**
+     * price
+     */
     private double price;
+    /**
+     * incoming Time
+     * @see Date
+     */
     private Date inTime;
+    /**
+     * outcoming Time
+     * @see Date
+     */
     private Date outTime;
 
+    /**
+     * getter ID
+     * @return ID
+     */
     public int getId() {
-<span class="fc" id="L15">        return id;</span>
+<span class="fc" id="L42">        return id;</span>
     }
 
+    /**
+     * setter ID
+     * @param id ID
+     */
     public void setId(int id) {
-<span class="fc" id="L19">        this.id = id;</span>
-<span class="fc" id="L20">    }</span>
+<span class="fc" id="L50">        this.id = id;</span>
+<span class="fc" id="L51">    }</span>
 
+    /**
+     * getter ParkingSpot
+     * @return parkingspot
+     */
     public ParkingSpot getParkingSpot() {
-<span class="fc" id="L23">        return parkingSpot;</span>
+<span class="fc" id="L58">        return parkingSpot;</span>
     }
 
+    /**
+     * setter ParkingSpot
+     * @param parkingSpot parkingSpot
+     */
     public void setParkingSpot(ParkingSpot parkingSpot) {
-<span class="fc" id="L27">        this.parkingSpot = parkingSpot;</span>
-<span class="fc" id="L28">    }</span>
+<span class="fc" id="L66">        this.parkingSpot = parkingSpot;</span>
+<span class="fc" id="L67">    }</span>
 
+    /**
+     * getter vehicle registration number
+     * @return vehicle registration number
+     */
     public String getVehicleRegNumber() {
-<span class="fc" id="L31">        return vehicleRegNumber;</span>
+<span class="fc" id="L74">        return vehicleRegNumber;</span>
     }
 
+    /**
+     * setter vehicle registration number
+     * @param vehicleRegNumber vehicle registration number
+     */
     public void setVehicleRegNumber(String vehicleRegNumber) {
-<span class="fc" id="L35">        this.vehicleRegNumber = vehicleRegNumber;</span>
-<span class="fc" id="L36">    }</span>
+<span class="fc" id="L82">        this.vehicleRegNumber = vehicleRegNumber;</span>
+<span class="fc" id="L83">    }</span>
 
+    /**
+     * getter price
+     * @return price
+     */
     public double getPrice() {
-<span class="fc" id="L39">        return price;</span>
+<span class="fc" id="L90">        return price;</span>
     }
 
+    /**
+     * setter price
+     * @param price price
+     */
     public void setPrice(double price) {
-<span class="fc" id="L43">        this.price = price;</span>
-<span class="fc" id="L44">    }</span>
+<span class="fc" id="L98">        this.price = price;</span>
+<span class="fc" id="L99">    }</span>
 
+    /**
+     * getter incoming time
+     * @return incoming time
+     */
     public Date getInTime() {
-<span class="fc" id="L47">        final Date inTime = this.inTime;</span>
-<span class="fc" id="L48">        return inTime;</span>
+<span class="fc" id="L106">        final Date inTime = this.inTime;</span>
+<span class="fc" id="L107">        return inTime;</span>
     }
 
+    /**
+     * setter incoming time
+     * @param inTime incoming time
+     */
     public void setInTime(Date inTime) {
-<span class="pc bpc" id="L52" title="1 of 2 branches missed.">        this.inTime = inTime == null ? null : (Date)inTime.clone();</span>
-<span class="fc" id="L53">    }</span>
+<span class="pc bpc" id="L115" title="1 of 2 branches missed.">        this.inTime = inTime == null ? null : (Date) inTime.clone();</span>
+<span class="fc" id="L116">    }</span>
 
+    /**
+     * getter outcoming time
+     * @return outcoming time
+     */
     public Date getOutTime() {
-<span class="fc" id="L56">        final Date outTime = this.outTime;</span>
-<span class="fc" id="L57">        return outTime;</span>
+<span class="fc" id="L123">        final Date outTime = this.outTime;</span>
+<span class="fc" id="L124">        return outTime;</span>
     }
 
+    /**
+     * setter outcoming time
+     * @param outTime outcoming time
+     */
     public void setOutTime(Date outTime) {
-<span class="fc bfc" id="L61" title="All 2 branches covered.">        this.outTime = outTime == null ? null : (Date)outTime.clone();</span>
-<span class="fc" id="L62">    }</span>
+<span class="fc bfc" id="L132" title="All 2 branches covered.">        this.outTime = outTime == null ? null : (Date) outTime.clone();</span>
+<span class="fc" id="L133">    }</span>
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>
